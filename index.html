@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+  </head>
+  <body>
+	<canvas id="paddington" width="500" height="500"></canvas>
+    <script>
+	  function getMousePos(canvas, evt) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+          x: evt.clientX - rect.left,
+          y: evt.clientY - rect.top
+        };
+      }
+	  
+	  function blink(){
+	  			setTimeout(function(){
+						imageObj.src = 'img/paddington6.png';
+				}, 2000);
+	  }
+	
+      var canvas = document.getElementById('paddington');
+      var context = canvas.getContext('2d');
+      var imageObj = new Image();
+
+      imageObj.onload = function() {
+        context.drawImage(imageObj, 69, 50, 500, 500);
+      };
+      imageObj.src = 'img/paddington1.png';
+	  
+	  canvas.addEventListener('mousemove', function(evt) {
+        var mousePos = getMousePos(canvas, evt);
+		if (mousePos.x>190 && mousePos.x<440 && mousePos.y>202){
+		  imageObj.src = 'img/paddington2.png';
+		}
+		if(mousePos.x>190 && mousePos.x<440 && mousePos.y>211){
+		  imageObj.src = 'img/paddington3.png';
+		}
+		if(mousePos.x>187 && mousePos.x<420 && mousePos.y>236){
+		  imageObj.src = 'img/paddington4.png';
+		}
+		if(mousePos.x>200 && mousePos.x<420 && mousePos.y>241){
+			imageObj.src = 'img/paddington5.png';	
+			blink();
+		}
+		if(mousePos.x<188 || mousePos.x>454 || mousePos.y<182){
+			imageObj.src = 'img/paddington1.png';
+		}
+      }, false);
+	  
+    </script>
+
+  </body>
+</html>
